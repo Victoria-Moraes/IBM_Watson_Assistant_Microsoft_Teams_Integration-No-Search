@@ -1,0 +1,1677 @@
+{
+  "name": "Tech Mahindra",
+  "type": "action",
+  "valid": true,
+  "status": "Available",
+  "created": "2022-07-27T14:59:18.674Z",
+  "updated": "2022-07-27T15:12:13.260Z",
+  "language": "en",
+  "skill_id": "7ede629d-91c3-4f2f-b152-15affa4cfcf3",
+  "workspace": {
+    "actions": [
+      {
+        "steps": [
+          {
+            "step": "step_321",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Por favor, acione a área comercial para correção manual do problema."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_321",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_462"
+                },
+                {
+                  "scalar": "yes"
+                }
+              ]
+            },
+            "next_step": "step_877"
+          },
+          {
+            "step": "step_462",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Este chamado resulta em caminhão parado?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": {
+                        "input": {
+                          "text": "Yes"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No",
+                      "value": {
+                        "input": {
+                          "text": "No"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "Eu não entendi, reformule sua resposta."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-yes-no",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_462",
+            "next_step": "step_321"
+          },
+          {
+            "step": "step_877",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Informe o seu erro."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "question": {
+              "free_text": true,
+              "only_populate_when_prompted": true
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_877",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_462"
+                },
+                {
+                  "scalar": "no"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Bloqueio nos fornecimentos",
+        "action": "action_21505",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_21505_intent_39474"
+        },
+        "variables": [
+          {
+            "title": "Por favor, acione a área comercial para correção manual do probl",
+            "variable": "step_321",
+            "data_type": "any"
+          },
+          {
+            "title": "Este chamado resulta em caminhão parado?",
+            "variable": "step_462",
+            "data_type": "yes_no"
+          },
+          {
+            "title": "Informe o seu erro.",
+            "variable": "step_877",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "fallback",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_691",
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_691",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_693"
+                },
+                {
+                  "value": "Sim",
+                  "from_entity": "entity_30315"
+                }
+              ]
+            }
+          },
+          {
+            "step": "step_693",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Deseja contatar um agente?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Sim",
+                      "value": {
+                        "input": {
+                          "text": "Sim"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Não",
+                      "value": {
+                        "input": {
+                          "text": "Não"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "Eu não entendi. Selecione uma opção válida:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_30315",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_693",
+            "next_step": "step_691"
+          }
+        ],
+        "title": "Contatar Agente",
+        "action": "action_3111",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_3111_intent_35775"
+        },
+        "variables": [
+          {
+            "title": "No response",
+            "variable": "step_691",
+            "data_type": "any"
+          },
+          {
+            "title": "Deseja contatar um agente?",
+            "variable": "step_693",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_37367",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_155",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "O seu problema resulta em caminhão parado?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Sim",
+                      "value": {
+                        "input": {
+                          "text": "Sim"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Não",
+                      "value": {
+                        "input": {
+                          "text": "Não"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "Eu não entendi. Selecione uma opção válida:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_29799",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_155",
+            "next_step": "step_518"
+          },
+          {
+            "step": "step_518",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Por favor, acione a área fiscal para correção manual do problema."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_518",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_155"
+                },
+                {
+                  "value": "Sim",
+                  "from_entity": "entity_29799"
+                }
+              ]
+            },
+            "next_step": "step_554"
+          },
+          {
+            "step": "step_554",
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action",
+              "invoke_action": {
+                "action": "action_4389",
+                "parameters": null,
+                "result_variable": "step_554_result_1"
+              }
+            },
+            "variable": "step_554",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_155"
+                },
+                {
+                  "value": "Não",
+                  "from_entity": "entity_29799"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Erro FCI",
+        "action": "action_3197",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_3197_intent_38368"
+        },
+        "variables": [
+          {
+            "title": "O seu problema resulta em caminhão parado?",
+            "variable": "step_155",
+            "data_type": "any"
+          },
+          {
+            "title": "Por favor, acione a área fiscal para correção manual do problema",
+            "variable": "step_518",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "variable": "step_554",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_554_result_1",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_4389",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_384",
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_384"
+          }
+        ],
+        "title": "Erro M03",
+        "action": "action_37367",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_37367_intent_28560"
+        },
+        "variables": [
+          {
+            "title": "No response",
+            "variable": "step_384",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_21505",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_149",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Não é necessário abrir chamado, pois será necessário aguardar a aprovação da SEFAZ para tal ação."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action",
+              "invoke_action": {
+                "action": "action_4389",
+                "parameters": null,
+                "result_variable": "step_149_result_1"
+              }
+            },
+            "variable": "step_149"
+          }
+        ],
+        "title": "Nota fiscal",
+        "action": "action_38648",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_38648_intent_11875"
+        },
+        "variables": [
+          {
+            "title": "Não é necessário abrir chamado, pois será necessário aguardar a ",
+            "variable": "step_149",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_149_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_554_result_1",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_3197",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_158",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Voce escolheu: "
+                          },
+                          {
+                            "variable": "step_190"
+                          },
+                          {
+                            "scalar": "\n\nIremos te encaminhar a um responsável por telefone."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_158",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_190"
+                },
+                {
+                  "value": "Entrar em contato por telefone da área responsável",
+                  "from_entity": "entity_9864"
+                }
+              ]
+            },
+            "next_step": "step_265"
+          },
+          {
+            "step": "step_190",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "O que deseja? Deseja entrar em contato com o analista, ou entrar em contato por telefone da área responsável ou abrir um ticket para formalizar o atendimento?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Entrar em contato com o analista",
+                      "value": {
+                        "input": {
+                          "text": "Entrar em contato com o analista"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Entrar em contato por telefone da área responsável",
+                      "value": {
+                        "input": {
+                          "text": "Entrar em contato por telefone da área responsável"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Abrir um ticket",
+                      "value": {
+                        "input": {
+                          "text": "Abrir um ticket"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "Eu não entendi. Selecione uma opção válida:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_9864",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_190",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_815"
+                },
+                {
+                  "value": "Sim",
+                  "from_entity": "entity_2551"
+                }
+              ]
+            },
+            "next_step": "step_366"
+          },
+          {
+            "step": "step_265",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Voce escolheu: "
+                          },
+                          {
+                            "variable": "step_190"
+                          },
+                          {
+                            "scalar": "\n\nIremos abrir um ticket."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_265",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_190"
+                },
+                {
+                  "value": "Abrir um ticket",
+                  "from_entity": "entity_9864"
+                }
+              ]
+            },
+            "next_step": "step_633"
+          },
+          {
+            "step": "step_366",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Voce escolheu: "
+                          },
+                          {
+                            "variable": "step_190"
+                          },
+                          {
+                            "scalar": "\n\nIremos te encaminhar a um responsável pelo chat Teams."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_366",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_190"
+                },
+                {
+                  "value": "Entrar em contato com o analista",
+                  "from_entity": "entity_9864"
+                }
+              ]
+            },
+            "next_step": "step_158"
+          },
+          {
+            "step": "step_633",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Obrigada!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_633",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_815"
+                },
+                {
+                  "value": "Não",
+                  "from_entity": "entity_2551"
+                }
+              ]
+            }
+          },
+          {
+            "step": "step_815",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Algo mais que possa ser feito?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Sim",
+                      "value": {
+                        "input": {
+                          "text": "Sim"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Não",
+                      "value": {
+                        "input": {
+                          "text": "Não"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "Eu não entendi. Selecione uma opção válida:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_2551",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_815",
+            "next_step": "step_190"
+          }
+        ],
+        "title": "Algo mais que possa ser feito?",
+        "action": "action_4389",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_4389_intent_12058"
+        },
+        "variables": [
+          {
+            "variable": "step_149_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "Voce escolheu: {variable} Iremos te encaminhar a um responsável ",
+            "variable": "step_158",
+            "data_type": "any"
+          },
+          {
+            "title": "O que deseja? Deseja entrar em contato com o analista, ou entrar",
+            "variable": "step_190",
+            "data_type": "any"
+          },
+          {
+            "title": "Voce escolheu: {variable} Iremos abrir um ticket.",
+            "variable": "step_265",
+            "data_type": "any"
+          },
+          {
+            "title": "Voce escolheu: {variable} Iremos te encaminhar a um responsável ",
+            "variable": "step_366",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_554_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "Obrigada!",
+            "variable": "step_633",
+            "data_type": "any"
+          },
+          {
+            "title": "Algo mais que possa ser feito?",
+            "variable": "step_815",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_985_result_1",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_3111",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_985",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Para esse tipo de problema não é necessário abrir chamado, pois será necessário que faça diversas novas tentativas de envio para a Sefaz."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action",
+              "invoke_action": {
+                "action": "action_4389",
+                "parameters": null,
+                "result_variable": "step_985_result_1"
+              }
+            },
+            "variable": "step_985"
+          }
+        ],
+        "title": "Erro M05",
+        "action": "action_45850",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_45850_intent_29512"
+        },
+        "variables": [
+          {
+            "variable": "step_149_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_554_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "Para esse tipo de problema não é necessário abrir chamado, pois ",
+            "variable": "step_985",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_985_result_1",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_38648",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "Acho que não entendi. Reformule sua pergunta."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_001",
+            "condition": {
+              "lte": [
+                {
+                  "system_variable": "no_action_matches_count"
+                },
+                {
+                  "scalar": 3
+                }
+              ]
+            },
+            "next_step": "step_002"
+          },
+          {
+            "step": "step_002",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": ""
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "fallback",
+                "parameters": null,
+                "result_variable": "step_002_result_1"
+              }
+            },
+            "variable": "step_002",
+            "condition": {
+              "gt": [
+                {
+                  "system_variable": "no_action_matches_count"
+                },
+                {
+                  "scalar": 3
+                }
+              ]
+            }
+          }
+        ],
+        "title": "No action matches",
+        "action": "anything_else",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "expression": "anything_else"
+        },
+        "variables": [
+          {
+            "title": "Receio não entender o que você está perguntando, por favor, refo",
+            "variable": "step_001",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_002",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_002_result_1",
+            "data_type": "any"
+          }
+        ],
+        "disambiguation_opt_out": true
+      },
+      {
+        "steps": [
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "Acho que não entendi. Eu posso conectar você a um agente."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Vamos mandá-lo para um agente disponível."
+                },
+                "agent_unavailable": {
+                  "message": "Não há agentes disponíveis neste momento. Quando houver um disponível, conectaremos você."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_001",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Step validation failed"
+                }
+              ]
+            },
+            "next_step": "step_002"
+          },
+          {
+            "step": "step_002",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "Desculpe não poder ajudá-lo. Vou conectá-lo a um agente imediatamente."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Vamos mandá-lo para um agente disponível."
+                },
+                "agent_unavailable": {
+                  "message": "Não há agentes disponíveis neste momento. Quando houver um disponível, conectaremos você."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_002",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Agent requested"
+                }
+              ]
+            },
+            "next_step": "step_003"
+          },
+          {
+            "step": "step_003",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "Acho que não entendi o que você está pedindo; vou conectá-lo a um agente."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Vamos mandá-lo para um agente disponível."
+                },
+                "agent_unavailable": {
+                  "message": "Não há agentes disponíveis neste momento. Quando houver um disponível, conectaremos você."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_003",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "No action matches"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Fallback",
+        "action": "fallback",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "fallback_connect_to_agent"
+        },
+        "variables": [
+          {
+            "title": "Acho que não entendi. Eu posso conectar você a um agente.",
+            "variable": "step_001",
+            "data_type": "any"
+          },
+          {
+            "title": "Desculpe não poder ajudá-lo. Vou conectá-lo a um agente imediata",
+            "variable": "step_002",
+            "data_type": "any"
+          },
+          {
+            "title": "Acho que não entendi o que você está pedindo; vou conectá-lo a u",
+            "variable": "step_003",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "anything_else",
+        "disambiguation_opt_out": true
+      },
+      {
+        "steps": [
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "Bem-vindo, como posso ajudá-lo?"
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "question": {
+              "free_text": true,
+              "only_populate_when_prompted": true
+            },
+            "resolver": {
+              "type": "search",
+              "response": {
+                "query": "",
+                "query_type": "natural_language"
+              }
+            },
+            "variable": "step_001"
+          }
+        ],
+        "title": "Greet customer",
+        "action": "welcome",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "expression": "welcome"
+        },
+        "variables": [
+          {
+            "variable": "step_001",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_45850",
+        "disambiguation_opt_out": true
+      }
+    ],
+    "intents": [
+      {
+        "intent": "action_21505_intent_39474",
+        "examples": [
+          {
+            "text": "Bloqueio nos fornecimentos"
+          },
+          {
+            "text": "pedido bloqueado"
+          }
+        ]
+      },
+      {
+        "intent": "action_3111_intent_35775",
+        "examples": [
+          {
+            "text": "Contatar Agente"
+          }
+        ]
+      },
+      {
+        "intent": "action_3197_intent_38368",
+        "examples": [
+          {
+            "text": "Erro FCI"
+          }
+        ]
+      },
+      {
+        "intent": "action_37367_intent_28560",
+        "examples": [
+          {
+            "text": "Divergência de valores"
+          },
+          {
+            "text": "Erro em impostos"
+          },
+          {
+            "text": "Erro M03"
+          }
+        ]
+      },
+      {
+        "intent": "action_38648_intent_11875",
+        "examples": [
+          {
+            "text": "Erro ao cancelar a nota fiscal"
+          },
+          {
+            "text": "Nota fiscal"
+          }
+        ]
+      },
+      {
+        "intent": "action_4389_intent_12058",
+        "examples": []
+      },
+      {
+        "intent": "action_45850_intent_29512",
+        "examples": [
+          {
+            "text": "Erro M05"
+          }
+        ]
+      },
+      {
+        "intent": "fallback_connect_to_agent",
+        "examples": [
+          {
+            "text": "Eu quero contatar um agente/Eu quero entrar em contato com um agente"
+          },
+          {
+            "text": "Eu vou falar com um agente/ Eu vou falar com um agente de suporte."
+          },
+          {
+            "text": "Por favor, você pode entrar em contato comigo com um agente humano?"
+          },
+          {
+            "text": "Preciso contatar a um atendente"
+          },
+          {
+            "text": "Você pode me conectar com uma pessoa real?"
+          }
+        ],
+        "description": "Solicite um agente humano."
+      }
+    ],
+    "entities": [
+      {
+        "entity": "entity_2551",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Não",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Sim",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_29799",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Não",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Sim",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_30315",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Não",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Sim",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_9864",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Abrir um ticket",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Entrar em contato com o analista",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Entrar em contato por telefone da área responsável",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "sys-yes-no",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "No",
+            "synonyms": [
+              "nay",
+              "negative",
+              "nope",
+              "not"
+            ]
+          },
+          {
+            "type": "synonyms",
+            "value": "Yes",
+            "synonyms": [
+              "positive",
+              "sure",
+              "yea",
+              "yeah",
+              "yup"
+            ]
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "api_version": {
+        "major_version": "v2",
+        "minor_version": "2018-11-08"
+      }
+    },
+    "variables": [],
+    "data_types": [],
+    "counterexamples": [],
+    "system_settings": {
+      "topic_switch": {
+        "enabled": true,
+        "messages": {
+          "confirm_return": {
+            "text": ""
+          },
+          "confirm_switch": {
+            "text": ""
+          }
+        },
+        "question_steps_threshold": 2
+      },
+      "disambiguation": {
+        "prompt": "Você quis dizer:",
+        "enabled": true,
+        "randomize": true,
+        "max_suggestions": 5,
+        "suggestion_text_policy": "title",
+        "none_of_the_above_prompt": "Nenhum dos itens acima"
+      },
+      "intent_classification": {
+        "training_backend_version": "v2"
+      }
+    },
+    "learning_opt_out": false
+  },
+  "description": "created for assistant 87491ae2-e266-4568-9875-b4ee39cbfd02",
+  "assistant_id": "d6bfc777-f110-4326-b68c-8e7b4ddeedc9",
+  "workspace_id": "7ede629d-91c3-4f2f-b152-15affa4cfcf3",
+  "dialog_settings": {},
+  "next_snapshot_version": "1"
+}

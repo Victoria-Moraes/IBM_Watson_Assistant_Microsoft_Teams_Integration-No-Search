@@ -1,0 +1,216 @@
+{
+  "intents": [
+    {
+      "intent": "OptionB",
+      "examples": [
+        {
+          "text": "B"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Help",
+      "examples": [
+        {
+          "text": "help"
+        }
+      ],
+      "description": "Help options"
+    },
+    {
+      "intent": "OptionA",
+      "examples": [
+        {
+          "text": "A"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Greetings",
+      "examples": [
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "Hi"
+        },
+        {
+          "text": "Hey"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Help",
+      "output": {
+        "generic": [
+          {
+            "title": "These are few options",
+            "options": [
+              {
+                "label": "You can read",
+                "value": {
+                  "input": {
+                    "text": "A"
+                  }
+                }
+              },
+              {
+                "label": "You can write",
+                "value": {
+                  "input": {
+                    "text": "B"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "conditions": "#Help",
+      "dialog_node": "Anything else",
+      "previous_sibling": "Welcome",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Greetings",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#Greetings",
+      "dialog_node": "Welcome",
+      "previous_sibling": "node_9_1590495149088"
+    },
+    {
+      "type": "standard",
+      "title": "OptionBSelected",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "You selected option B"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#OptionB",
+      "dialog_node": "node_5_1590495257491",
+      "previous_sibling": "node_2_1590495220495"
+    },
+    {
+      "type": "standard",
+      "title": "#OptionASelected",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "You selected Option A"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#OptionA",
+      "dialog_node": "node_2_1590495220495",
+      "previous_sibling": "Anything else"
+    },
+    {
+      "type": "standard",
+      "title": "Anything Else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I don't understand!"
+              },
+              {
+                "text": "Can you say that again?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_4_1590495117358",
+      "previous_sibling": "node_5_1590495257491"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hey"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "node_9_1590495149088"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "My first skill",
+  "language": "en",
+  "description": ""
+}
